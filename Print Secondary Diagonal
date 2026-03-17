@@ -1,0 +1,39 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+using namespace std;
+void printSecondaryDiagonal(vector<vector<int>>& nums)
+{
+    int n=nums.size();
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(i+j==n-1)
+            {
+                cout<<nums[i][j]<<" ";
+            }
+        }
+    }
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    printSecondaryDiagonal(nums);
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+3 5 7 
