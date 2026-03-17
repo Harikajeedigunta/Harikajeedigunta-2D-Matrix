@@ -1,0 +1,49 @@
+C++ Code:
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+void reverseEachRow(vector<vector<int>>& nums)
+{
+    if(nums.empty() || nums[0].empty()) return;
+    int rows=nums.size();
+    int cols=nums[0].size();
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols/2;j++)
+        {
+            swap(nums[i][j],nums[i][cols-1-j]);
+        }
+    }
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cout<<nums[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];      
+        }
+    }
+    reverseEachRow(nums);
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+3 2 1 
+6 5 4 
+9 8 7 
