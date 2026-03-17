@@ -1,0 +1,43 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+using namespace std;
+int countOfOddNums(vector<vector<int>>& nums)
+{
+    if(nums.empty() || nums[0].empty()) return 0;
+    int odd_count=0;
+    int rows=nums.size();
+    int cols=nums[0].size();
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            if(nums[i][j]%2!=0)
+            {
+                odd_count++;
+            }
+        }
+    }
+    return odd_count;
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    cout<<countOfOddNums(nums);
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+5
