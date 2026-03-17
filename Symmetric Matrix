@@ -1,0 +1,45 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+using namespace std;
+bool isSymmetricMatrix(vector<vector<int>>& nums)
+{
+    if(nums.empty()) return true;
+    int rows=nums.size();
+    int cols=nums[0].size();
+    if(rows!=cols) return false;
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            if(nums[i][j]!=nums[j][i])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    bool ans=isSymmetricMatrix(nums);
+    if(ans) cout<<"True";
+    else cout<<"False";
+}
+
+Input:
+3 3
+1 0 2 2 1 0 0 3 1
+
+Output:
+False
