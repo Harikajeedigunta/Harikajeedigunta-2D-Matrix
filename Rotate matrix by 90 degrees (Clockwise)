@@ -1,40 +1,61 @@
 C++ Code:
-#include<bits/stdc++.h>
+#include<iostream>
+#include<algorithm>
+#include<vector>
 using namespace std;
-void printRotate90(vector<vector<int>>& matrix)
+void roate90Clockwise(vector<vector<int>>& nums)
 {
-    int n=matrix.size();
-    // Transpose of matrix
+    if(nums.empty() || nums[0].empty()) return;
+    int n=nums.size();
+    // Tranpose of a matrix
     for(int i=0;i<n;i++)
     {
         for(int j=i+1;j<n;j++)
         {
-            swap(matrix[i][j],matrix[j][i]);
+            swap(nums[i][j],nums[j][i]);
         }
     }
-    // Reverse the matrix
+    // Reverse each row
     for(int i=0;i<n;i++)
     {
-        reverse(matrix[i].begin(),matrix[i].end());
+        int left=0,right=n-1;
+        while(left<right)
+        {
+            swap(nums[i][left],nums[i][right]);
+            left++;
+            right--;
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<nums[i][j]<<" ";
+        }
+        cout<<endl;
     }
 }
-int main() {
-    vector<vector<int>> matrix = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-
-    printRotate90(matrix);
-
-    for (auto row : matrix) {
-        for (int val : row)
-            cout << val << " ";
-        cout << endl;
+int main()
+{
+    int n;
+    cin>>n;
+    vector<vector<int>>nums(n,vector<int>(n));
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>nums[i][j];      
+        }
     }
+    roate90Clockwise(nums);
 }
+
+Input:
+3
+1 2 3 4 5 6 7 8 9
 
 Output:
 7 4 1 
 8 5 2 
 9 6 3 
+
