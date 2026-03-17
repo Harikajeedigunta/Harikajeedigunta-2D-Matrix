@@ -1,0 +1,50 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+pair<long long,int> minColSum(vector<vector<int>>& nums)
+{
+    if(nums.empty()) return {-1,-1};
+    int rows=nums.size();
+    int cols=nums[0].size();
+    if(rows==0 || cols==0) return {-1,-1};
+    long long min_col_sum=LLONG_MAX;
+    int min_index=-1;
+    for(int j=0;j<cols;j++)
+    {
+        long long col_sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            col_sum+=nums[i][j];
+        }
+        if(col_sum<min_col_sum)
+        {
+            min_col_sum=col_sum;
+            min_index=j;// j+1 if one-based indexing
+        }
+    }
+    return {min_col_sum,min_index};
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    pair<long long,int>result=minColSum(nums);
+    cout<<result.first<<" "<<result.second;
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+12 0
