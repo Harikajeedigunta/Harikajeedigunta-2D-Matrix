@@ -1,14 +1,17 @@
 C++ Code:
-#include<bits/stdc++.h>
+#include<iostream>
+#include<algorithm>
+#include<vector>
 using namespace std;
-void printRotate90(vector<vector<int>>& matrix)
+void rotate90AntiClockwise(vector<vector<int>>& nums)
 {
-    int n=matrix.size();
+    if(nums.empty() || nums[0].empty()) return;
+    int n=nums.size();
     for(int i=0;i<n;i++)
     {
         for(int j=i+1;j<n;j++)
         {
-            swap(matrix[i][j],matrix[j][i]);
+            swap(nums[i][j],nums[j][i]);
         }
     }
     for(int j=0;j<n;j++)
@@ -16,29 +19,41 @@ void printRotate90(vector<vector<int>>& matrix)
         int top=0,bottom=n-1;
         while(top<bottom)
         {
-            swap(matrix[top][j],matrix[bottom][j]);
+            swap(nums[top][j],nums[bottom][j]);
             top++;
             bottom--;
         }
     }
-}
-int main() {
-    vector<vector<int>> matrix = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-
-    printRotate90(matrix);
-
-    for (auto row : matrix) {
-        for (int val : row)
-            cout << val << " ";
-        cout << endl;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<nums[i][j]<<" ";
+        }
+        cout<<endl;
     }
 }
+int main()
+{
+    int n;
+    cin>>n;
+    vector<vector<int>>nums(n,vector<int>(n));
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    rotate90AntiClockwise(nums);
+}
+
+Input:
+3
+1 2 3 4 5 6 7 8 9
 
 Output:
 3 6 9 
 2 5 8 
 1 4 7 
+
