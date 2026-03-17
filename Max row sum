@@ -1,0 +1,53 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+pair<long long,int> maxRowSum(vector<vector<int>>& nums)
+{
+    int rows=nums.size();
+    int cols=nums[0].size();
+    if(rows==0 || cols==0)
+    {
+        return {-1,-1};
+    }
+    long long max_row_sum=LLONG_MIN;
+    int max_row_index=-1;
+    for(int i=0;i<rows;i++)
+    {
+        long long row_sum=0;
+        for(int j=0;j<cols;j++)
+        {
+            row_sum+=nums[i][j];
+        }
+        if(row_sum>max_row_sum)
+        {
+            max_row_sum=row_sum;
+            // It is for one based indexing if it is 0 based here we can remove +1
+            max_row_index=i+1;
+        }
+    }
+    return {max_row_sum,max_row_index};
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    pair<long long,int>result=maxRowSum(nums);
+    cout<<result.first<<" "<<result.second;
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+24 3
