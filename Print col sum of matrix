@@ -1,0 +1,37 @@
+C++ code:
+#include<iostream>
+#include<vector>
+using namespace std;
+void printColSum(vector<vector<int>>& nums,int rows,int cols)
+{
+    for(int j=0;j<cols;j++)
+    {
+        int col_sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            col_sum+=nums[i][j];
+        }
+        cout<<col_sum<<endl;
+    }
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    printColSum(nums,rows,cols);
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+12 15 18 
