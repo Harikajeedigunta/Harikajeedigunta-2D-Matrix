@@ -1,0 +1,44 @@
+C++ Code:
+#include<iostream>
+#include<vector>
+using namespace std;
+bool isIdentityMatrix(vector<vector<int>>& nums)
+{
+    int rows=nums.size();
+    int cols=nums[0].size();
+    if(rows!=cols) return false;
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            if((i==j && nums[i][j]!=1) || (i!=j && nums[i][j]!=0))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    bool ans=isIdentityMatrix(nums);
+    if(ans) cout<<"True";
+    else cout<<"False";
+}
+
+Input:
+3 3
+1 0 0 0 1 0 0 0 1
+
+Output:
+True
