@@ -1,0 +1,50 @@
+C++ Code:
+#include<iostream>
+#include<climits>
+#include<vector>
+using namespace std;
+pair<long long,int> maxColSum(vector<vector<int>>& nums)
+{
+    if(nums.empty()) return {-1,-1};
+    int rows=nums.size();
+    int cols=nums[0].size();
+    if(rows==0 || cols==0) return {-1,-1};
+    long long max_col_sum=LLONG_MIN;
+    int max_col_index=-1;
+    for(int j=0;j<cols;j++)
+    {
+        long long cols_sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            cols_sum+=nums[i][j];
+        }
+        if(cols_sum>max_col_sum)
+        {
+            max_col_sum=cols_sum;
+            max_col_index=j; // use j+1 for one based indexing
+        }
+    }
+    return {max_col_sum,max_col_index};
+}
+int main()
+{
+    int rows,cols;
+    cin>>rows>>cols;
+    vector<vector<int>>nums(rows,vector<int>(cols));
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            cin>>nums[i][j];
+        }
+    }
+    pair<long long,int>result=maxColSum(nums);
+    cout<<result.first<<" "<<result.second<<endl;
+}
+
+Input:
+3 3
+1 2 3 4 5 6 7 8 9
+
+Output:
+18 2
